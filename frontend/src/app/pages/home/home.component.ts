@@ -2,11 +2,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 
 @Component({
-  selector: 'app-starter',
+  selector: 'app-home',
   standalone: true,
   imports:[MaterialModule],
-  templateUrl: './starter.component.html',
-  styleUrls: ['./starter.component.scss'],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class StarterComponent {}
+export class homeComponent {}

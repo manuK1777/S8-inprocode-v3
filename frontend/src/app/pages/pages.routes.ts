@@ -1,16 +1,28 @@
 import { Routes } from '@angular/router';
-import { StarterComponent } from './starter/starter.component';
+import { homeComponent } from './home/home.component';
+import { ArtistListComponent } from './artist-list/artist-list.component';
 
 export const PagesRoutes: Routes = [
   {
     path: '',
-    component: StarterComponent,
+    component: homeComponent,
     data: {
-      title: 'Starter',
+      title: 'Home',
       urls: [
-        { title: 'Dashboard', url: '/starter' },
-        { title: 'Starter' },
+        { title: 'Dashboard', url: '/home' },
+        { title: 'Home' },
       ],
     },
   },
+  {
+    path: 'artist-list', 
+    component: ArtistListComponent,
+    data: {
+      title: 'Artist List',
+      urls: [
+        { title: 'Dashboard', url: '/home' },
+        { title: 'Artist List' },
+      ],
+    },
+  }
 ];

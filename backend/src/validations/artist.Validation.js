@@ -2,8 +2,8 @@ import { body } from 'express-validator';
 
 // Artist validation middleware
 export const artistValidator = [
-  // Validate artistName
-  body("artistName")
+  // Validate name
+  body("name")
     .exists()
     .withMessage("Artist name is required")
     .isString()
@@ -11,8 +11,8 @@ export const artistValidator = [
     .isLength({ min: 2 })
     .withMessage("Artist name should be at least 2 characters"),
 
-  // Validate artistEmail
-  body("artistEmail")
+  // Validate email
+  body("email")
     .exists()
     .withMessage("Artist email is required")
     .isEmail()
@@ -44,9 +44,9 @@ export const artistValidator = [
     .matches(/^(https?:\/\/)?[\w-]+(\.[\w-]+)+[/#?]?.*$/)
     .withMessage("Web Page must be a valid URL"),
 
-  // Validate photo (optional)
-  body("photo")
+  // Validate file (optional)
+  body("file")
     .optional({ nullable: true })
     .isString()
-    .withMessage("Photo must be a string"),
+    .withMessage("file must be a string"),
 ];

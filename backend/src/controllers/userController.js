@@ -13,7 +13,7 @@ export const getUser = async (req, res) => {
       "email": req.user.email,
       "name": req.user.name,
       "surname": req.user.surname,
-      "photo": req.user.photo,
+      "file": req.user.file,
       "roles": req.user.roles,
       "created_at": req.user.created_at,
       "updated_at": req.user.updated_at
@@ -47,9 +47,9 @@ export const uploadPhoto = async (req, res) => {
     }
 
     //Si el usuario tiene foto, se la eliminamos
-    if (req.user.photo != null) {
-      console.log("Ruta:" + rutaArchivo + req.user.photo);
-      fs.access(rutaArchivo + req.user.photo, fs.constants.F_OK, (err) => {
+    if (req.user.file != null) {
+      console.log("Ruta:" + rutaArchivo + req.user.file);
+      fs.access(rutaArchivo + req.user.file, fs.constants.F_OK, (err) => {
         if (err) {
           console.log('The file does not exist or cannot be accessed');
           /*res.status(400).json({
@@ -59,7 +59,7 @@ export const uploadPhoto = async (req, res) => {
           });*/
         } else {
           // Eliminar el archivo
-          fs.unlink(rutaArchivo + req.user.photo, (err) => {
+          fs.unlink(rutaArchivo + req.user.file, (err) => {
             if (err) {
               console.error('Error al eliminar el archivo', err);
               return res.status(500).json({
@@ -77,7 +77,7 @@ export const uploadPhoto = async (req, res) => {
 
     //Actualizo la imagen del usuario
     console.log("Guardo la imagen: " + req.file.filename + " en el id de usuario: " + req.user.id_user);
-    await User.update({ photo: req.file.filename }, { where: { id_user: req.user.id_user } })
+    await User.update({ file: req.file.filename }, { where: { id_user: req.user.id_user } })
     return res.status(200).json({
       code: 1,
       message: "Uploaded the file successfully: " + req.file.originalname,

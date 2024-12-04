@@ -51,8 +51,8 @@ const insertInitialUserData = async () => {
   ];
 
   const artistData = [
-    { artistName: 'ArtistaA', artistEmail: 'artistA@hotmail.com', contact: 'contactoA', phone: 'phoneA', webPage: 'webPageA', user_id: 2 },
-    { artistName: 'ArtistaB', artistEmail: 'artistB@hotmail.com', contact: 'contactoB', phone: 'phoneB', webPage: 'webPageB', user_id: 2 }
+    { name: 'ArtistaA', email: 'artistA@hotmail.com', contact: 'contactoA', phone: 'phoneA', webPage: 'webPageA', user_id: 2 },
+    { name: 'ArtistaB', email: 'artistB@hotmail.com', contact: 'contactoB', phone: 'phoneB', webPage: 'webPageB', user_id: 2 }
   ]
   // Insertar datos con opción ignoreDuplicates
   await Book.bulkCreate(bookData, { ignoreDuplicates: true });

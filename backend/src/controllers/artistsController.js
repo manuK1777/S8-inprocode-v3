@@ -14,7 +14,7 @@ export const getAllArtists = async (req, res) => {
     const artists = await Artist.findAll(); // Using Sequelize to fetch all artists
     const artistsWithPhoto = artists.map((artist) => ({
       ...artist.toJSON(),
-      photo: artist.photo || null,
+      file: artist.file || null,
     }));
 
     res.status(200).json({
@@ -61,16 +61,16 @@ export const createArtist = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { artistName, artistEmail, webPage, contact, phone } = req.body;
-    const photo = req.file ? req.file.filename : null;
+    const { name, email, webPage, contact, phone } = req.body;
+    const file = req.file ? req.file.filename : null;
 
     const newArtist = await Artist.create({
-      artistName,
-      artistEmail,
+      name,
+      email,
       webPage: webPage || null,
       contact,
       phone,
-      photo,
+      file,
     });
 
     res.status(201).json({
@@ -93,20 +93,20 @@ export const updateArtist = async (req, res) => {
     }
 
     const { id } = req.params;
-    const { artistName, artistEmail, webPage, contact, phone } = req.body;
-    const photo = req.file ? req.file.filename : null;
+    const { name, email, webPage, contact, phone } = req.body;
+    const file = req.file ? req.file.filename : null;
 
     const artist = await Artist.findByPk(id);
     if (!artist) {
       return res.status(404).json({ code: -3, message: 'Artist not found' });
     }
 
-    artist.artistName = artistName || artist.artistName;
-    artist.artistEmail = artistEmail || artist.artistEmail;
+    artist.name = name || artist.name;
+    artist.email = email || artist.email;
     artist.webPage = webPage || artist.webPage;
     artist.contact = contact || artist.contact;
     artist.phone = phone || artist.phone;
-    if (photo) artist.photo = photo;
+    if (file) artist.file = file;
 
     await artist.save();
 
@@ -135,9 +135,9 @@ export const deleteArtist = async (req, res) => {
       return res.status(404).json({ code: -3, message: 'Artist not found' });
     }
 
-    // Remove associated photo if exists
-    if (artist.photo) {
-      const photoPath = path.join(__dirname, '../uploads', artist.photo);
+    // Remove associated file if exists
+    if (artist.file) {
+      const photoPath = path.join(__dirname, '../uploads', artist.file);
       if (fs.existsSync(photoPath)) {
         fs.unlinkSync(photoPath);
       }
@@ -165,25 +165,25 @@ export const deleteArtistImage = async (req, res) => {
       return res.status(404).json({ code: -3, message: 'Artist not found' });
     }
 
-    // Remove photo from disk if exists
-    if (artist.photo) {
-      const photoPath = path.join(__dirname, '../uploads', artist.photo);
+    // Remove file from disk if exists
+    if (artist.file) {
+      const photoPath = path.join(__dirname, '../uploads', artist.file);
       if (fs.existsSync(photoPath)) {
         fs.unlinkSync(photoPath);
       }
     }
 
-    // Update artist to remove photo reference
-    artist.photo = null;
+    // Update artist to remove file reference
+    artist.file = null;
     await artist.save();
 
     res.status(200).json({
       code: 1,
-      message: 'Photo deleted successfully',
+      message: 'file deleted successfully',
     });
   } catch (error) {
-    console.error('Error deleting photo:', error);
-    res.status(500).json({ error: 'Failed to delete photo' });
+    console.error('Error deleting file:', error);
+    res.status(500).json({ error: 'Failed to delete file' });
   }
 };
 

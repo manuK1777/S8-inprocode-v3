@@ -3,7 +3,7 @@ import { sequelize } from '../db.js';
 import User from './userModel.js';
 
 const Artist = sequelize.define('Artist', {
-  id_artist: {
+  id: {
     type: DataTypes.INTEGER(8).UNSIGNED,
     primaryKey: true,
     autoIncrement: true,
@@ -11,11 +11,11 @@ const Artist = sequelize.define('Artist', {
   user_id: {
     type: DataTypes.INTEGER(8).UNSIGNED
   },
-  artistName: {
+  name: {
     type: DataTypes.STRING(100),
     allowNull: false
   },
-  artistEmail: {
+  email: {
     type: DataTypes.STRING(100),
     allowNull: false
   },
@@ -31,7 +31,7 @@ const Artist = sequelize.define('Artist', {
     type: DataTypes.STRING(100),
     allowNull: true
   },
-  photo: {
+  file: {
     type: DataTypes.STRING(30),
     allowNull: true,
   },

@@ -54,7 +54,7 @@
 
 <!-- external Link -->
 
-@if(!item.navCap && item.external) {
+<!-- @if(!item.navCap && item.external) {
 <mat-list-item
   onClick="window.open('//google.com')"
   class="menu-list-item"
@@ -64,22 +64,24 @@
     class="iconify routeIcon"
     matListItemIcon
     [attr.data-icon]="item.iconName"
-  ></span>
+  ></span> -->
+
   <!-- <i-tabler
     class="routeIcon"
     name="{{ item.iconName }}"
     matListItemIcon
   ></i-tabler> -->
-  <span class="hide-menu">{{ item.displayName | translate }}</span>
+  
+  <!-- <span class="hide-menu">{{ item.displayName | translate }}</span>
 </mat-list-item>
-}
+} -->
 
 <!-- children -->
-@if(expanded) { @for(child of item.children; track child) {
+<!-- @if(expanded) { @for(child of item.children; track child) {
 <app-nav-item
   [item]="child"
   (click)="onSubItemSelected(child)"
   [depth]="depth + 1"
 >
 </app-nav-item>
-} }
+} } -->

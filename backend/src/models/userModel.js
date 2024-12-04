@@ -38,7 +38,7 @@ const User = sequelize.define('User', {
       this.setDataValue('roles', value.join(','));
     }
   },
-  photo: {
+  file: {
     type: DataTypes.STRING(30),
     allowNull: true,
   },

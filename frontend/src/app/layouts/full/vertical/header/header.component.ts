@@ -204,7 +204,7 @@ export class HeaderComponent {
       imagePath: 'assets/images/profile/user-3.jpg',
       time: '10 mins ago',
       title: 'Andrew Johnson',
-      subtitle: 'Sent a photo',
+      subtitle: 'Sent a file',
     },
     {
       id: 4,
