@@ -2,6 +2,10 @@ import { validationResult } from 'express-validator';
 import Artist from '../models/artistModel.js'; // Assuming Sequelize model
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Get All Artists
 export const getAllArtists = async (req, res) => {
@@ -12,7 +16,7 @@ export const getAllArtists = async (req, res) => {
     }
 
     const artists = await Artist.findAll(); // Using Sequelize to fetch all artists
-    const artistsWithPhoto = artists.map((artist) => ({
+    const artistsWithfile = artists.map((artist) => ({
       ...artist.toJSON(),
       file: artist.file || null,
     }));
@@ -20,7 +24,7 @@ export const getAllArtists = async (req, res) => {
     res.status(200).json({
       code: 1,
       message: 'Artists List',
-      data: artistsWithPhoto,
+      data: artistsWithfile,
     });
   } catch (error) {
     console.error(error);
@@ -103,9 +107,10 @@ export const updateArtist = async (req, res) => {
 
     artist.name = name || artist.name;
     artist.email = email || artist.email;
-    artist.webPage = webPage || artist.webPage;
     artist.contact = contact || artist.contact;
     artist.phone = phone || artist.phone;
+    artist.webPage = webPage || artist.webPage;
+    
     if (file) artist.file = file;
 
     await artist.save();
@@ -137,9 +142,11 @@ export const deleteArtist = async (req, res) => {
 
     // Remove associated file if exists
     if (artist.file) {
-      const photoPath = path.join(__dirname, '../uploads', artist.file);
-      if (fs.existsSync(photoPath)) {
-        fs.unlinkSync(photoPath);
+      const filePath = path.join(__dirname, '../uploads', artist.file);
+      console.log('File path to delete:', filePath);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
       }
     }
 
@@ -157,6 +164,8 @@ export const deleteArtist = async (req, res) => {
 
 // Delete Artist Image
 export const deleteArtistImage = async (req, res) => {
+  console.log('File deletion request:', req.params);
+  
   try {
     const { id } = req.params;
 
@@ -167,9 +176,9 @@ export const deleteArtistImage = async (req, res) => {
 
     // Remove file from disk if exists
     if (artist.file) {
-      const photoPath = path.join(__dirname, '../uploads', artist.file);
-      if (fs.existsSync(photoPath)) {
-        fs.unlinkSync(photoPath);
+      const filePath = path.join(__dirname, '../uploads', artist.file);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
       }
     }
 

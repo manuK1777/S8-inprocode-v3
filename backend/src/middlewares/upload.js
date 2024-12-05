@@ -1,11 +1,17 @@
 import util from "util";
 import multer from "multer";
 import path from 'path';
+import { fileURLToPath } from 'url';
+
 const maxSize = 2 * 1024 * 1024;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const uploadPath = path.resolve(__dirname, "../uploads");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     console.log("file.originalname: "+file.originalname);

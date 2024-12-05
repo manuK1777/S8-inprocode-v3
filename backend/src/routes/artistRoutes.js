@@ -4,7 +4,8 @@ import {
   getArtistById, 
   createArtist, 
   updateArtist, 
-  deleteArtist 
+  deleteArtist,
+  deleteArtistImage, 
 } from '../controllers/artistsController.js';
 // import { authenticateToken } from '../middlewares/authenticateToken.js';
 import { artistValidator } from '../validations/artist.Validation.js'; // Import artist-specific validation
@@ -24,16 +25,16 @@ const router = Router();
 
 //Routes for managing artists WITHOUT AUTHENTIFICATION
 router.get('/', getAllArtists); // Get all artists
-router.get('/:id', idValidator, getArtistById); // Get an artist by ID
-router.post(
-  '/',
-  uploadFileMiddleware, // Middleware to handle file uploads
-  artistValidator, // Validation middleware
-  createArtist // Controller logic
+router.get('/:id', idValidator, getArtistById); 
+router.post('/', uploadFileMiddleware, artistValidator, createArtist 
 );
-router.post('/', artistValidator, createArtist); // Create an artist
-router.patch('/:id', idValidator, artistValidator, updateArtist); // Update an artist
-router.delete('/:id', idValidator, deleteArtist); // Delete an artist
+router.put('/:id', uploadFileMiddleware, (req, res, next) => {
+  next();
+}, idValidator, artistValidator, updateArtist);
+router.delete('/:id', idValidator, deleteArtist); 
+router.delete('/:id/file', idValidator, deleteArtistImage); // Ensure this matches the intended endpoint
+
+// router.put('/:id', upload.single('photo'), artistsController.updateArtist);
 
 export default router;
 

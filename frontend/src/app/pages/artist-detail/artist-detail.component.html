@@ -1,0 +1,70 @@
+
+<mat-grid-list cols="6" rowHeight="200px">
+    @for (tile of tiles; track tile) {
+      <mat-grid-tile
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color"
+        class="custom-tile">
+        <ng-container [ngSwitch]="tile.type">
+
+          <div *ngSwitchCase="'text'" class="tile-text">{{ tile.text }}</div>
+  
+          <div *ngSwitchCase="'header'" class="tile-header"><h1 class="mat-h1">{{ tile.text }}</h1>
+            <button mat-raised-button color="primary" aria-label="view staff"><mat-icon>group</mat-icon>
+            Grupo
+            </button>
+            <button mat-raised-button color="primary" aria-label="view tech staff"><mat-icon>group</mat-icon>
+              Técnicos
+              </button>
+          </div>
+
+          <img 
+          *ngSwitchCase="'image'" 
+          [src]="tile.imageUrl" 
+          class="tile-image" 
+          alt="Tile image"
+          [style.visibility]="tile.imageUrl ? 'visible' : 'hidden'"/>
+        
+  
+          <div *ngSwitchCase="'button'" mat-raised-button color="primary">
+            <div class="fab-menu">
+              <!-- <button mat-raised-button color="primary" aria-label="Push Photo" (click)="pushPhoto()">
+                <mat-icon>add_a_photo</mat-icon>Subir foto
+              </button> -->
+              <!-- <button mat-raised-button color="primary" (click)="fileInput.click()">
+                <mat-icon>add_a_photo</mat-icon>Subir foto
+              </button> -->
+              <input type="file" #fileInput (change)="onFileSelected($event)" hidden accept="image/jpeg, image/jpg, image/png, image/webp" />
+            
+              <button mat-raised-button color="primary" aria-label="Edit Info" (click)="openEditArtistModal()">
+                <mat-icon>edit</mat-icon>Editar artista
+              </button>
+             
+              <button mat-raised-button color="primary" aria-label="Delete Artist" (click)="deleteArtist()">
+                <mat-icon>delete</mat-icon>Borrar artista
+              </button>
+            </div>
+          </div>
+        
+          <div *ngSwitchCase="'info'" class="tile-info">
+            <mat-card appearance="outlined" class="card-info">
+              <mat-card-content>
+                <mat-list>
+                  <mat-list-item class="cust-font">{{ email }}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Contacto: {{ phone }}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>{{ webpage }}</mat-list-item>
+                </mat-list>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div *ngSwitchDefault>Default Content</div>
+        </ng-container>
+    </mat-grid-tile>
+    }
+  </mat-grid-list>
+
+

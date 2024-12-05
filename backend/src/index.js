@@ -10,6 +10,12 @@ import testRoutes from './routes/testRoutes.js';
 import { testConnection } from './db.js';
 import dotenv from 'dotenv';
 import { insertInitialUserData } from './start_data.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 dotenv.config();
 
 const app = express();
@@ -37,6 +43,8 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/book', bookRoutes);
 app.use('/artists', artistRoutes);
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/test', testRoutes);
 

@@ -7,14 +7,18 @@ import { HttpClient } from '@angular/common/http';
 import { ArtistsService } from '../../services/artists.service';
 import { artist } from '../../models/artist.model';
 import { RouterLink, Router } from '@angular/router';
+import { MaterialModule } from '../../material.module';
+
+
 
 @Component({
   selector: 'app-artist-list',
   standalone: true,
-  imports: [ MatButton, MatTableModule, MatPaginatorModule, RouterLink ],
+  imports: [ MatButton, MatTableModule, MatPaginatorModule, RouterLink, MaterialModule ],
   templateUrl: './artist-list.component.html',
   styleUrl: './artist-list.component.scss'
 })
+
 export class ArtistListComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['id', 'name', 'email', 'webPage', 'contact', 'phone'];
@@ -39,9 +43,9 @@ export class ArtistListComponent implements AfterViewInit {
   loadArtists(): void {
     this.artistsService.getArtists().subscribe({
       next: (response: any) => {
-        console.log('API Response:', response); // Log full API response
-        this.dataSource.data = response.data; // Assign only the data array
-        console.log('DataSource:', this.dataSource.data); // Verify data assignment
+        console.log('API Response:', response); 
+        this.dataSource.data = response.data; 
+        console.log('DataSource:', this.dataSource.data); 
       },
       error: (error) => {
         console.error('Failed to fetch artists', error);
@@ -49,7 +53,6 @@ export class ArtistListComponent implements AfterViewInit {
     });
   }
   
-
   openModalCreateArtist() {
     const dialogRef = this.openModalCreateArtistService.openCreateArtistModal();
 
@@ -62,15 +65,16 @@ export class ArtistListComponent implements AfterViewInit {
 
   onSelectArtist(artist: artist) {
     const artistSlug = artist.name.toLowerCase().replace(/ /g, '-');
-    this.router.navigate(['/artist', artist.id, artistSlug]);
+    this.router.navigate(['/home/artist', artist.id, artistSlug]);
   }
 
   sanitizeWebPage(url: string | null): string {
-    if (!url) {
-      return '#'; 
+    if (!url || url.trim() === '') {
+      return '#'; // Fallback for invalid or empty URLs
     }
     return url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`;
   }
+  
   
 
 }

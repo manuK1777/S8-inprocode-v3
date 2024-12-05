@@ -21,7 +21,7 @@
     <ng-container matColumnDef="webPage">
       <th mat-header-cell *matHeaderCellDef>Página web</th>
       <td mat-cell *matCellDef="let element">
-         <a [href]="sanitizeWebPage(element.webPage)" target="_blank">{{ element.webPage || 'N/A' }}</a>
+         <a [href]="sanitizeWebPage(element.webPage)" target="_blank" rel="noopener noreferrer">{{ element.webPage || 'N/A' }}</a>
          </td>
     </ng-container>
 

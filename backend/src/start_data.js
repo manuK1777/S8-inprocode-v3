@@ -42,7 +42,7 @@ const insertInitialUserData = async () => {
   ];
   // Insertar datos con opción ignoreDuplicates
   // Para actualizar todas las filas: updateOnDuplicate: Object.keys(User.rawAttributes)
-  await User.bulkCreate(userData, { ignoreDuplicates: true });
+  // await User.bulkCreate(userData, { ignoreDuplicates: true });
   
   const bookData = [
     { title: 'TituloA', year: 1955 },
@@ -50,13 +50,13 @@ const insertInitialUserData = async () => {
     { title: 'TituloC', year: 1475, user_id: 2 }
   ];
 
-  const artistData = [
-    { name: 'ArtistaA', email: 'artistA@hotmail.com', contact: 'contactoA', phone: 'phoneA', webPage: 'webPageA', user_id: 2 },
-    { name: 'ArtistaB', email: 'artistB@hotmail.com', contact: 'contactoB', phone: 'phoneB', webPage: 'webPageB', user_id: 2 }
-  ]
+  // const artistData = [
+  //   { name: 'ArtistaA', email: 'artistA@hotmail.com', contact: 'contactoA', phone: 'phoneA', webPage: 'webPageA', user_id: 2 },
+  //   { name: 'ArtistaB', email: 'artistB@hotmail.com', contact: 'contactoB', phone: 'phoneB', webPage: 'webPageB', user_id: 2 }
+  // ]
   // Insertar datos con opción ignoreDuplicates
-  await Book.bulkCreate(bookData, { ignoreDuplicates: true });
-  await Artist.bulkCreate(artistData, { ignoreDuplicates: true });
+  // await Book.bulkCreate(bookData, { ignoreDuplicates: true });
+  // await Artist.bulkCreate(artistData, { ignoreDuplicates: true });
 }
 
 export { insertInitialUserData };

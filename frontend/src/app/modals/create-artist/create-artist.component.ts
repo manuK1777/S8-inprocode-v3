@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { ArtistsService } from '../../services/artists.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { artist } from '../../models/artist.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-artist',
@@ -34,6 +35,7 @@ export class CreateArtistComponent implements OnInit {
     public dialogRef: MatDialogRef<CreateArtistComponent>,
     private http: HttpClient,
     private artistsService: ArtistsService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: { artist?: artist } | null,
   ) {}
 
@@ -91,11 +93,15 @@ export class CreateArtistComponent implements OnInit {
     if (this.data?.artist?.id) {
       this.artistsService.deleteArtistImage(this.data.artist.id).subscribe({
         next: () => {
+          // this.router.navigate([`/home/artist/${this.data?.artist?.id}/${this.data?.artist?.name.toLowerCase().replace(/ /g, '-')}`]);
           console.log('file deleted successfully');
-          if (this.data && this.data.artist) {
-            this.data.artist.file = null; 
-          }
-        },
+        //  this.loadArtistDetails(this.data.artist.id);
+         // Close the dialog and pass updated data to the parent component
+         this.dialogRef.close({
+          action: 'deleteImage',
+          artist: { ...this.data?.artist, file: null },
+        });
+      },
         error: (error) => {
           console.error('Failed to delete file:', error);
         },
@@ -141,7 +147,7 @@ export class CreateArtistComponent implements OnInit {
       });
     } else {
       // Creating new artist
-      this.artistsService.addArtistWithPhoto(formData).subscribe({
+      this.artistsService.addArtistWithfile(formData).subscribe({
         next: (response) => {
           console.log('Artist created successfully:', response);
           this.dialogRef.close({ action: 'create', artist: response });

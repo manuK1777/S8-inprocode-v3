@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { homeComponent } from './home/home.component';
 import { ArtistListComponent } from './artist-list/artist-list.component';
+import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -24,5 +25,19 @@ export const PagesRoutes: Routes = [
         { title: 'Artist List' },
       ],
     },
-  }
+  },
+  {
+    path: 'artist/:id/:slug', // Include both ID and slug in the path
+    component: ArtistDetailComponent,
+    data: {
+      title: 'Artist Details',
+      urls: [
+        { title: 'Dashboard', url: '/home' },
+        { title: 'Artist List', url: '/artist-list' },
+        { title: 'Artist Details' },
+      ],
+    },
+  },
 ];
+
+

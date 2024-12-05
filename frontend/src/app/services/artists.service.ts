@@ -25,11 +25,11 @@ export class ArtistsService {
     return this.http.post<artist>(this.apiUrl, newArtist);
   }
 
-  addArtistWithPhoto(formData: FormData): Observable<any> {
+  addArtistWithfile(formData: FormData): Observable<any> {
     return this.http.post(this.apiUrl, formData); 
   }
 
-  updateArtistPhoto(id: number, file: File): Observable<artist> {
+  updateArtistfile(id: number, file: File): Observable<artist> {
     const formData = new FormData();
     formData.append('file', file);
 
