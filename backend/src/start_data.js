@@ -1,6 +1,7 @@
-import User from './models/userModel.js';
-import Book from './models/bookModel.js';
-import Artist from './models/artistModel.js';
+// import User from './models/userModel.js';
+// import Book from './models/bookModel.js';
+// import Artist from './models/artistModel.js';
+import Location from './models/locationModel.js';
 
 
 const insertInitialUserData = async () => {
@@ -49,6 +50,25 @@ const insertInitialUserData = async () => {
     { title: 'TituloB', year: 1988 },
     { title: 'TituloC', year: 1475, user_id: 2 }
   ];
+
+  const locationData = [
+    {
+        name: 'Nova Jazz Cava',
+        category: 'Jazz Venue',
+        latitude: 41.56406,
+        longitude: 2.01395,
+        description: 'A popular jazz venue in Terrassa, Catalonia.'
+    },
+    {
+        name: 'Jamboree',
+        category: 'Jazz Club',
+        latitude: 41.37971,
+        longitude: 2.17519,
+        description: 'A renowned jazz club in Barcelona, located in Plaça Reial.'
+    }
+];
+
+  await Location.bulkCreate(locationData, { ignoreDuplicates: true });
 
   // const artistData = [
   //   { name: 'ArtistaA', email: 'artistA@hotmail.com', contact: 'contactoA', phone: 'phoneA', webPage: 'webPageA', user_id: 2 },

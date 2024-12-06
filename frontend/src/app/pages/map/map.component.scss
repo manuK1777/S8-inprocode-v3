@@ -1,0 +1,26 @@
+.map-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Allow the card to fill its container */
+    width: 100%; /* Ensure it scales with its parent */
+  }
+  
+  #map {
+    flex: 1; /* Make the map fill the available space */
+    height: 400px; /* Default height */
+    width: 100%; /* Full width of its container */
+    min-height: 370px; /* Optional: Set a minimum height */
+  }
+  
+
+// #map { 
+//     display: flex;
+//     margin: 12px auto 12px auto;
+//     height: 400px;
+//     width: 1000px 
+// }
+
+// mat-card-content {
+//     display: flex;
+//    // height: 500px; /* Example fixed height for the card */
+//   }

@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { homeComponent } from './home/home.component';
 import { ArtistListComponent } from './artist-list/artist-list.component';
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
+import { MapComponent } from './map/map.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -27,7 +29,29 @@ export const PagesRoutes: Routes = [
     },
   },
   {
-    path: 'artist/:id/:slug', // Include both ID and slug in the path
+    path: 'map', 
+    component: MapComponent,
+    data: {
+      title: 'Map',
+      urls: [
+        { title: 'Dashboard', url: '/home' },
+        { title: 'Map' },
+      ],
+    },
+  },
+  {
+    path: 'calendar', 
+    component: CalendarComponent,
+    data: {
+      title: 'Calendar',
+      urls: [
+        { title: 'Dashboard', url: '/home' },
+        { title: 'Calendar' },
+      ],
+    },
+  },
+  {
+    path: 'artist/:id/:slug', 
     component: ArtistDetailComponent,
     data: {
       title: 'Artist Details',

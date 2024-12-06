@@ -6,6 +6,8 @@ import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
 import artistRoutes from './routes/artistRoutes.js';
+import locationRoutes from './routes/locationRoutes.js';
+import contactRoutes from './routes/contactRoutes.js';
 import testRoutes from './routes/testRoutes.js';
 import { testConnection } from './db.js';
 import dotenv from 'dotenv';
@@ -43,9 +45,9 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/book', bookRoutes);
 app.use('/artists', artistRoutes);
-
+app.use('/locations', locationRoutes); 
+app.use("/contacts", contactRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 app.use('/test', testRoutes);
 
 // Iniciar el servidor

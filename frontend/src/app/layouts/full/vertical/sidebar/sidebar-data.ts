@@ -1,9 +1,9 @@
 import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
-  {
-    navCap: 'Home',
-  },
+  // {
+  //   navCap: 'Home',
+  // },
   {
     displayName: 'Home',
     iconName: 'solar:home-smile-line-duotone',
@@ -11,8 +11,18 @@ export const navItems: NavItem[] = [
   },
   {
     displayName: 'Artist List',
-    iconName: 'solar:home-smile-line-duotone',
+    iconName: 'solar:clipboard-line-duotone',
     route: 'home/artist-list',
+  },
+  {
+    displayName: 'Map',
+    iconName: 'solar:streets-map-point-line-duotone',
+    route: 'home/map',
+  },
+  {
+    displayName: 'Calendar',
+    iconName: 'solar:calendar-line-duotone',
+    route: 'home/calendar',
   },
 ]; //move down to have the res
 
