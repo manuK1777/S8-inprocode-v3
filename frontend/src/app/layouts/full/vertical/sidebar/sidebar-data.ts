@@ -6,7 +6,7 @@ export const navItems: NavItem[] = [
   // },
   {
     displayName: 'Home',
-    iconName: 'solar:home-smile-line-duotone',
+    iconName: 'ic:outline-home',
     route: '/home',
   },
   {
@@ -23,6 +23,11 @@ export const navItems: NavItem[] = [
     displayName: 'Calendar',
     iconName: 'solar:calendar-line-duotone',
     route: 'home/calendar',
+  },
+  {
+    displayName: 'Charts',
+    iconName: 'solar:chart-bold-duotone',
+    route: 'home/charts',
   },
 ]; //move down to have the res
 
