@@ -1,0 +1,54 @@
+<mat-toolbar class="toolbar-container">
+    <div>
+      <!-- View Toggle -->
+      <button mat-icon-button [color]="activeView === 'map' ? 'accent' : ''" (click)="changeView('map')">
+        <mat-icon>map</mat-icon>
+      </button>
+      <button mat-icon-button [color]="activeView === 'table' ? 'accent' : ''" (click)="changeView('table')">
+        <mat-icon>table_chart</mat-icon>
+      </button>
+    </div>
+  
+    <div class="toolbar-actions">
+      <!-- Add Venue Button -->
+      <button mat-raised-button color="accent" (click)="openAddVenueDialog()">
+        <mat-icon>add</mat-icon> Add Venue
+      </button>
+  
+      <!-- Toggle Edit/Delete Modes -->
+      <button mat-icon-button [color]="editMode ? 'warn' : ''" (click)="toggleEditMode()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button [color]="deleteMode ? 'warn' : ''" (click)="toggleDeleteMode()">
+        <mat-icon>delete</mat-icon>
+      </button>
+  
+      <!-- Filters -->
+      <mat-chip-listbox
+        aria-label="Category Filters"
+        [(ngModel)]="selectedCategories"
+        multiple
+        class="chip-container"
+        (change)="toggleCategoryFilter()"
+      >
+
+         <!-- Always Present "All Venues" Chip -->
+         <mat-chip-option
+         [value]="'All Venues'"
+         [selected]="isAllVenuesSelected()"
+         (click)="selectAllVenues()"
+       >
+         All Venues
+       </mat-chip-option>
+
+        <!-- Dynamic Categories -->
+      <ng-container *ngFor="let category of categories; trackBy: trackByCategory">
+        <mat-chip-option
+          [value]="category">
+          {{ category }}
+        </mat-chip-option>
+      </ng-container>
+      </mat-chip-listbox>
+    </div>
+  </mat-toolbar>
+  

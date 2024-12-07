@@ -3,7 +3,9 @@ import { homeComponent } from './home/home.component';
 import { ArtistListComponent } from './artist-list/artist-list.component';
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
 import { MapComponent } from './map/map.component';
+import { VenuesComponent } from './venues/venues.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { VenuesTableComponent } from './venues-table/venues-table.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -28,16 +30,48 @@ export const PagesRoutes: Routes = [
       ],
     },
   },
+  // {
+  //   path: 'map', 
+  //   component: MapComponent,
+  //   data: {
+  //     title: 'Map',
+  //     urls: [
+  //       { title: 'Dashboard', url: '/home' },
+  //       { title: 'Map' },
+  //     ],
+  //   },
+  // },
   {
-    path: 'map', 
-    component: MapComponent,
+    path: 'venues',
+    component: VenuesComponent, // Parent component
     data: {
-      title: 'Map',
+      title: 'Venues',
       urls: [
         { title: 'Dashboard', url: '/home' },
-        { title: 'Map' },
+        { title: 'Venues' },
       ],
     },
+    children: [
+      {
+        path: 'map',
+        component: MapComponent, // Map view
+        data: {
+          title: 'Map View',
+        },
+      },
+      {
+        path: 'table',
+        component: VenuesTableComponent, // Table view
+        data: {
+          title: 'Table View',
+        },
+      },
+      {
+        path: '',
+        redirectTo: 'map',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: 'calendar', 

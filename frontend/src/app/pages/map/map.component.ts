@@ -1,53 +1,72 @@
-import { Component, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Location } from 'src/app/models/location.model';
 import { MaterialModule } from 'src/app/material.module';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 declare let L: any;
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [ MaterialModule ],
+  imports: [ MaterialModule, FormsModule, CommonModule ],
   templateUrl: './map.component.html',
-  styleUrl: './map.component.scss'
+  styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements AfterViewInit, OnDestroy {
+export class MapComponent implements OnInit, OnChanges {
+  @Input() venues: Location[] = [];
+  @Output() editVenue = new EventEmitter<{ id: number; updatedVenue: Location }>();
+  @Output() deleteVenue = new EventEmitter<number>();
 
-  private map!: any; 
+  private map: any; // Leaflet map instance
+  private markersLayer: any; // Layer group to hold markers
 
-  constructor() {} 
+  constructor(private dialog: MatDialog) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.initMap();
-  
-   // Trigger a resize check once the map is initialized
-      setTimeout(() => {
-        this.map.invalidateSize();
-      }, 0);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['venues'] && this.map) {
+      this.updateMapMarkers(this.venues);
     }
+  }
 
-    private initMap(): void {
-      this.map = L.map('map').setView([41.619443, 1.827222], 9);
-
-    // Add OpenStreetMap tiles to the map
+  private initMap(): void {
+    // Initialize the map
+    this.map = L.map('map').setView([41.669888, 1.827222], 9); // Example coordinates for Catalonia
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+      maxZoom: 10,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.map);
+
+    // Create a layer group for markers
+    this.markersLayer = L.layerGroup().addTo(this.map);
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    if (this.map) {
-      this.map.invalidateSize();
-    }
+  private updateMapMarkers(locations: Location[]): void {
+    // Clear existing markers from the layer group
+    this.markersLayer.clearLayers();
+
+    // Add new markers
+    locations.forEach((location) => {
+      const marker = L.marker([+location.latitude, +location.longitude]);
+      marker.bindPopup(`
+        <b>${location.name}</b><br>
+        ${location.category || 'No Category'}<br>
+        <a href="https://example.com/location/${location.id}" target="_blank">More details</a>
+      `);
+      this.markersLayer.addLayer(marker);
+    });
   }
 
-  ngOnDestroy(): void {
-    if (this.map) {
-      this.map.remove();
-    }
+  onEditVenue(id: number, updatedVenue: Location): void {
+    this.editVenue.emit({ id, updatedVenue });
   }
-  
 
- // var map = L.map('map').setView([51.505, -0.09], 13);
+  onDelete(id: number): void {
+    this.deleteVenue.emit(id); // Emit the venue ID for deletion
+  }
 }

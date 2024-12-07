@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Venue' : 'Add Venue' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="venueForm" class="venue-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Venue Name</mat-label>
+      <input matInput formControlName="name" />
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('name')?.hasError('required')">Name is required</mat-error>
+      </ng-container>
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('name')?.hasError('minlength')">Name must be at least 2 characters</mat-error>
+      </ng-container>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <input matInput formControlName="category" />
+      <mat-error *ngIf="venueForm.get('category')?.hasError('required')">Category is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Latitude</mat-label>
+      <input matInput type="number" formControlName="latitude" />
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('latitude')?.hasError('required')">Latitude is required</mat-error>
+      </ng-container>
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('latitude')?.hasError('min')">Minimum value is -90</mat-error>
+      </ng-container>
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('latitude')?.hasError('max')">Maximum value is 90</mat-error>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Longitude</mat-label>
+      <input matInput type="number" formControlName="longitude" />
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('longitude')?.hasError('required')">Longitude is required</mat-error>
+      </ng-container>
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('longitude')?.hasError('min')">Minimum value is -180</mat-error>
+      </ng-container>
+      <ng-container>
+        <mat-error *ngIf="venueForm.get('longitude')?.hasError('max')">Maximum value is 180</mat-error>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">{{ isEditMode ? 'Update' : 'Add' }}</button>
+</mat-dialog-actions>

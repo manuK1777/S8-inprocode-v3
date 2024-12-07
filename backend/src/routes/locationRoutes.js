@@ -5,6 +5,8 @@ import {
   createLocation,
   updateLocation,
   deleteLocation,
+  getCategories,
+  getLocationsByCategories
 } from "../controllers/locationController.js";
 import { validate } from "../middlewares/validate.js"; // Middleware to handle validation
 import { locationValidator } from "../validations/location.Validation.js";
@@ -29,5 +31,9 @@ router.delete(
   validate,
   deleteLocation
 );
+
+router.get('/categories', getCategories);
+router.get('/filtered-locations', getLocationsByCategories);
+
 
 export default router;

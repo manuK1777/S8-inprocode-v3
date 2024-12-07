@@ -140,3 +140,42 @@ export const deleteLocation = async (req, res) => {
     res.status(500).json({ error: 'Failed to delete location' });
   }
 };
+
+// Get categories
+export const getCategories = async (req, res) => {
+  try {
+    const categories = await Location.findAll({
+      attributes: ['category'],
+      group: ['category'], 
+    });
+
+    res.status(200).json(categories.map((c) => c.category));
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    res.status(500).json({ error: 'Failed to fetch categories' });
+  }
+};
+
+import { Op } from 'sequelize'; // Use Sequelize.Op instead of Sequelize directly
+
+export const getLocationsByCategories = async (req, res) => {
+  try {
+    const { categories } = req.query; // Example: ?categories=Jazz,Rock
+    const categoryArray = categories ? categories.split(',') : [];
+
+    const locations = await Location.findAll({
+      where: {
+        category: {
+          [Op.in]: categoryArray, // Use Op.in for filtering
+        },
+      },
+    });
+
+    res.status(200).json(locations);
+  } catch (error) {
+    console.error('Error fetching locations by categories:', error);
+    res.status(500).json({ error: 'Failed to fetch locations' });
+  }
+};
+
+

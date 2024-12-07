@@ -10,14 +10,14 @@ export const navItems: NavItem[] = [
     route: '/home',
   },
   {
-    displayName: 'Artist List',
-    iconName: 'solar:clipboard-line-duotone',
+    displayName: 'Artists',
+    iconName: 'tabler:users-group',
     route: 'home/artist-list',
   },
   {
-    displayName: 'Map',
-    iconName: 'solar:streets-map-point-line-duotone',
-    route: 'home/map',
+    displayName: 'Venues',
+    iconName: 'solar:point-on-map-perspective-bold-duotone',
+    route: 'home/venues',
   },
   {
     displayName: 'Calendar',
