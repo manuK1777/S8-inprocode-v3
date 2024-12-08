@@ -30,17 +30,6 @@ export const PagesRoutes: Routes = [
       ],
     },
   },
-  // {
-  //   path: 'map', 
-  //   component: MapComponent,
-  //   data: {
-  //     title: 'Map',
-  //     urls: [
-  //       { title: 'Dashboard', url: '/home' },
-  //       { title: 'Map' },
-  //     ],
-  //   },
-  // },
   {
     path: 'venues',
     component: VenuesComponent, // Parent component
@@ -80,6 +69,7 @@ export const PagesRoutes: Routes = [
       title: 'Calendar',
       urls: [
         { title: 'Dashboard', url: '/home' },
+        { title: 'Calendar', url: '/calendar' },
         { title: 'Calendar' },
       ],
     },
