@@ -1,5 +1,4 @@
 // import User from './models/userModel.js';
-// import Book from './models/bookModel.js';
 // import Artist from './models/artistModel.js';
 import Location from './models/locationModel.js';
 
@@ -45,12 +44,6 @@ const insertInitialUserData = async () => {
   // Para actualizar todas las filas: updateOnDuplicate: Object.keys(User.rawAttributes)
   // await User.bulkCreate(userData, { ignoreDuplicates: true });
   
-  const bookData = [
-    { title: 'TituloA', year: 1955 },
-    { title: 'TituloB', year: 1988 },
-    { title: 'TituloC', year: 1475, user_id: 2 }
-  ];
-
 //   const locationData = [
 //     {
 //         name: 'Nova Jazz Cava',
@@ -75,7 +68,6 @@ const insertInitialUserData = async () => {
   //   { name: 'ArtistaB', email: 'artistB@hotmail.com', contact: 'contactoB', phone: 'phoneB', webPage: 'webPageB', user_id: 2 }
   // ]
   // Insertar datos con opción ignoreDuplicates
-  // await Book.bulkCreate(bookData, { ignoreDuplicates: true });
   // await Artist.bulkCreate(artistData, { ignoreDuplicates: true });
 }
 

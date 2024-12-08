@@ -1,5 +1,5 @@
 import { validationResult } from 'express-validator';
-import Artist from '../models/artistModel.js'; // Assuming Sequelize model
+import Artist from '../models/artistModel.js';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Get All Artists
 export const getAllArtists = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -15,7 +14,7 @@ export const getAllArtists = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const artists = await Artist.findAll(); // Using Sequelize to fetch all artists
+    const artists = await Artist.findAll(); 
     const artistsWithfile = artists.map((artist) => ({
       ...artist.toJSON(),
       file: artist.file || null,
@@ -32,7 +31,6 @@ export const getAllArtists = async (req, res) => {
   }
 };
 
-// Get Artist by ID
 export const getArtistById = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -57,7 +55,6 @@ export const getArtistById = async (req, res) => {
   }
 };
 
-// Create New Artist
 export const createArtist = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -88,7 +85,6 @@ export const createArtist = async (req, res) => {
   }
 };
 
-// Update Existing Artist
 export const updateArtist = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -126,7 +122,6 @@ export const updateArtist = async (req, res) => {
   }
 };
 
-// Delete Artist
 export const deleteArtist = async (req, res) => {
   try {
     const errors = validationResult(req);

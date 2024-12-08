@@ -4,10 +4,10 @@ import cookieParser from "cookie-parser";
 import cors from 'cors'; //para poder hacer puts, y tal desde el cliente al servidor
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import bookRoutes from './routes/bookRoutes.js';
 import artistRoutes from './routes/artistRoutes.js';
 import locationRoutes from './routes/locationRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
+import eventRoutes  from './routes/eventRoutes.js';
 import testRoutes from './routes/testRoutes.js';
 import { testConnection } from './db.js';
 import dotenv from 'dotenv';
@@ -43,11 +43,11 @@ await insertInitialUserData();
 // Configurar rutas
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-app.use('/book', bookRoutes);
 app.use('/artists', artistRoutes);
 app.use('/locations', locationRoutes); 
 app.use("/contacts", contactRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/events', eventRoutes);
 app.use('/test', testRoutes);
 
 // Iniciar el servidor

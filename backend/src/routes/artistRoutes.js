@@ -7,10 +7,10 @@ import {
   deleteArtist,
   deleteArtistImage, 
 } from '../controllers/artistsController.js';
-import { artistValidator } from '../validations/artist.Validation.js'; // Import artist-specific validation
-import { idValidator } from '../validations/generic.Validation.js'; // Validate IDs
+import { artistValidator } from '../validations/artist.Validation.js'; 
+import { idValidator } from '../validations/generic.Validation.js'; 
 import { validate } from "../middlewares/validate.js";
-import { uploadFileMiddleware } from '../middlewares/upload.js'; // File upload middleware
+import { uploadFileMiddleware } from '../middlewares/upload.js'; 
 
 
 const router = Router();
