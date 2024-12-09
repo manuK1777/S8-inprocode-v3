@@ -35,14 +35,20 @@ export class EventDialogComponent {
     });
   }
 
+
   saveEvent(): void {
     if (this.eventForm.valid) {
+      const updatedEvent = {
+        ...this.data.event, // Include existing event properties like `id`
+        ...this.eventForm.value, // Override with form values
+      };
       this.dialogRef.close({
         action: this.isEditMode ? 'edit' : 'add',
-        event: this.eventForm.value,
+        event: updatedEvent,
       });
     }
   }
+  
 
   deleteEvent(): void {
     this.dialogRef.close({ action: 'delete', event: this.data.event });

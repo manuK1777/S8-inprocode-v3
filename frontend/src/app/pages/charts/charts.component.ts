@@ -32,7 +32,10 @@ export class ChartsComponent implements OnInit {
 
   loadChartData(): void {
     this.eventService.getChartData().subscribe({
+      
+      
       next: (data) => {
+        console.log('Chart data: ', data);
         this.eventsByCategory = data.data.eventsByCategory || []; 
         this.eventsOverTime = data.data.eventsOverTime || []; 
       },

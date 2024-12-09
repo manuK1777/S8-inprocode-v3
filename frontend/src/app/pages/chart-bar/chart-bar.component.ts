@@ -17,6 +17,8 @@ export class ChartBarComponent implements OnChanges, OnDestroy {
   }
 
   ngOnChanges(): void {
+    console.log('Chart data on chartBarComp ', this.data);
+    
     if (Array.isArray(this.data) && this.data.length > 0) {
       this.renderChart();
     } else {
@@ -30,10 +32,13 @@ export class ChartBarComponent implements OnChanges, OnDestroy {
   }
 
   private renderChart(): void {
-    this.destroyChart(); // Destroy any existing chart instance
+   this.destroyChart(); // Destroy any existing chart instance
 
     const categories = this.data.map((item) => item.category);
     const counts = this.data.map((item) => item.count);
+
+    console.log('categories from chartBarComponent: ', categories);
+    console.log('counts from chartBarComponent: ', counts);
 
     const config: ChartConfiguration<'bar'> = {
       type: 'bar',

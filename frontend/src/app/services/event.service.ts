@@ -20,6 +20,8 @@ export class EventService {
   }
 
   updateEvent(id: number, event: Event): Observable<Event> {
+    console.log('http request: ',  this.http.put<Event>(`${this.apiUrl}/${id}`, event));
+    
     return this.http.put<Event>(`${this.apiUrl}/${id}`, event);
   }
 

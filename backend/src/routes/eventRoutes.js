@@ -26,7 +26,7 @@ router.get('/:id', idValidator, validate, getEventById);
 
 router.post('/', eventValidator, validate, createEvent);
 
-router.put('/:id', idValidator, validate, eventValidator, validate, updateEvent);
+router.put('/:id', idValidator, eventValidator, validate, updateEvent);
 
 router.delete('/:id', idValidator, validate, deleteEvent);
 

@@ -102,6 +102,8 @@ export class CalendarComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.action === 'edit' && result.event) {
         // Update Event
+        console.log('Dialog result: ', result.event);
+        
         this.eventService.updateEvent(result.event.id, result.event).subscribe({
           next: () => {
             console.log('Event updated successfully');
