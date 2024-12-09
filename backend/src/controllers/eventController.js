@@ -1,5 +1,6 @@
 import { validationResult } from 'express-validator';
 import Event from '../models/eventModel.js';
+import { sequelize } from '../db.js';
 
 export const getAllEvents = async (req, res) => {
   try {
@@ -10,6 +11,81 @@ export const getAllEvents = async (req, res) => {
     res.status(500).json({ code: 0, message: 'Error fetching events' });
   }
 };
+
+export const getChartData = async (req, res) => {
+  try {
+    // Events by category
+    const eventsByCategory = await Event.findAll({
+      attributes: [
+        'category',
+        [sequelize.fn('COUNT', sequelize.col('category')), 'count'],
+      ],
+      group: ['category'],
+    });
+
+    // Events over time
+    const eventsOverTime = await Event.findAll({
+      attributes: [
+        [sequelize.fn('DATE_FORMAT', sequelize.col('start_time'), '%Y-%m'), 'month'],
+        [sequelize.fn('COUNT', sequelize.col('start_time')), 'count'],
+      ],
+      group: [sequelize.fn('DATE_FORMAT', sequelize.col('start_time'), '%Y-%m')],
+    });
+
+    res.status(200).json({
+      code: 1,
+      message: 'Chart data retrieved successfully',
+      data: {
+        eventsByCategory,
+        eventsOverTime,
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching chart data:', error);
+    res.status(500).json({ code: 0, message: 'Error fetching chart data' });
+  }
+};
+
+// export const getEventsByCategory = async (req, res) => {
+//   try {
+//     const results = await Event.findAll({
+//       attributes: [
+//         'category',
+//         [sequelize.fn('COUNT', sequelize.col('category')), 'count'],
+//       ],
+//       group: ['category'],
+//     });
+//     res.status(200).json({
+//       code: 1,
+//       message: 'Events per category retrieved successfully',
+//       data: results,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching events by category:', error);
+//     res.status(500).json({ code: 0, message: 'Error fetching events by category' });
+//   }
+// };
+
+// export const getEventsOverTime = async (req, res) => {
+//   try {
+//     const results = await Event.findAll({
+//       attributes: [
+//         [sequelize.fn('DATE_FORMAT', sequelize.col('start_time'), '%Y-%m'), 'month'],
+//         [sequelize.fn('COUNT', sequelize.col('start_time')), 'count'],
+//       ],
+//       group: [sequelize.fn('DATE_FORMAT', sequelize.col('start_time'), '%Y-%m')],
+//     });
+//     res.status(200).json({
+//       code: 1,
+//       message: 'Events timeline retrieved successfully',
+//       data: results,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching events over time:', error);
+//     res.status(500).json({ code: 0, message: 'Error fetching events over time' });
+//   }
+// };
+
 
 export const getEventById = async (req, res) => {
   try {
@@ -36,11 +112,11 @@ export const createEvent = async (req, res) => {
   }
 
   try {
-    const { title, description, start_time, end_time, color } = req.body;
+    const { title, category, start_time, end_time, color } = req.body;
 
     const newEvent = await Event.create({
       title,
-      description,
+      category,
       start_time,
       end_time,
       color,
@@ -61,7 +137,7 @@ export const updateEvent = async (req, res) => {
 
   try {
     const { id } = req.params;
-    const { title, description, start_time, end_time, color } = req.body;
+    const { title, category, start_time, end_time, color } = req.body;
 
     const event = await Event.findByPk(id);
     if (!event) {
@@ -70,7 +146,7 @@ export const updateEvent = async (req, res) => {
 
     await event.update({
       title,
-      description,
+      category,
       start_time,
       end_time,
       color,
@@ -99,3 +175,4 @@ export const deleteEvent = async (req, res) => {
     res.status(500).json({ code: 0, message: 'Error deleting event' });
   }
 };
+

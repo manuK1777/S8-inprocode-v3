@@ -30,9 +30,9 @@ export const locationValidator = [
     .isFloat({ min: -180, max: 180 })
     .withMessage("Longitude must be a valid number between -180 and 180"),
 
-  // Validate description (optional)
-  body("description")
+  // Validate category (optional)
+  body("category")
     .optional()
     .isString()
-    .withMessage("Description must be a string"),
+    .withMessage("category must be a string"),
 ];

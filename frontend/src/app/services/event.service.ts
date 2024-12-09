@@ -11,6 +11,10 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
+  getChartData(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/chart-data`);
+  }
+
   createEvent(event: Event): Observable<Event> {
     return this.http.post<Event>(`${this.apiUrl}/`, event);
   }

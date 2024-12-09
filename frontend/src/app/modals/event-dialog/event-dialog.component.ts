@@ -28,7 +28,7 @@ export class EventDialogComponent {
   ngOnInit(): void {
     this.eventForm = this.fb.group({
       title: [this.data.event?.title || '', [Validators.required]],
-      description: [this.data.event?.description || ''],
+      category: [this.data.event?.category || ''],
       start_time: [this.data.event?.start_time || '', [Validators.required]],
       end_time: [this.data.event?.end_time || '', [Validators.required]],
       color: [this.data.event?.color || '#3788d8'],

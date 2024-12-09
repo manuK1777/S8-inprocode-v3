@@ -33,7 +33,6 @@ export class VenueDialogComponent {
         this.data.venue?.longitude || '', 
         [Validators.required, Validators.min(-180), Validators.max(180)]
       ],
-      description: [this.data.venue?.description || ''], // Optional field
     });
     
   }

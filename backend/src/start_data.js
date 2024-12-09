@@ -50,14 +50,14 @@ const insertInitialUserData = async () => {
 //         category: 'Jazz Venue',
 //         latitude: 41.56406,
 //         longitude: 2.01395,
-//         description: 'A popular jazz venue in Terrassa, Catalonia.'
+//         category: 'A popular jazz venue in Terrassa, Catalonia.'
 //     },
 //     {
 //         name: 'Jamboree',
 //         category: 'Jazz Club',
 //         latitude: 41.37971,
 //         longitude: 2.17519,
-//         description: 'A renowned jazz club in Barcelona, located in Plaça Reial.'
+//         category: 'A renowned jazz club in Barcelona, located in Plaça Reial.'
 //     }
 // ];
 

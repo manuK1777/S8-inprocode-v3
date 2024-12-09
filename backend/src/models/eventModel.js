@@ -3,12 +3,13 @@ import { sequelize } from '../db.js';
 
 const Event = sequelize.define('Event', {
   title: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: true,
+  category: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+    defaultValue: 'Uncategorized' 
   },
   start_time: {
     type: DataTypes.DATE,

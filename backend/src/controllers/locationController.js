@@ -56,14 +56,14 @@ export const createLocation = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, category, latitude, longitude, description, contact_id } = req.body;
+    const { name, category, latitude, longitude, contact_id } = req.body;
 
     const newLocation = await Location.create({
       name,
       category,
       latitude,
       longitude,
-      description,
+      category,
       contact_id: contact_id || null, // Allow optional contact association
     });
 
@@ -87,7 +87,7 @@ export const updateLocation = async (req, res) => {
     }
 
     const { id } = req.params;
-    const { name, category, latitude, longitude, description, contact_id } = req.body;
+    const { name, category, latitude, longitude, contact_id } = req.body;
 
     const location = await Location.findByPk(id);
     if (!location) {
@@ -99,7 +99,7 @@ export const updateLocation = async (req, res) => {
       category: category || location.category,
       latitude: latitude || location.latitude,
       longitude: longitude || location.longitude,
-      description: description || location.description,
+      category: category || location.category,
       contact_id: contact_id || location.contact_id,
     });
 

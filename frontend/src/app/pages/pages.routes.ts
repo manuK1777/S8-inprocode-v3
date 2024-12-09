@@ -6,6 +6,9 @@ import { MapComponent } from './map/map.component';
 import { VenuesComponent } from './venues/venues.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { VenuesTableComponent } from './venues-table/venues-table.component';
+import { ChartsComponent } from './charts/charts.component';
+import { ChartBarComponent } from './chart-bar/chart-bar.component';
+import { ChartLineComponent } from './chart-line/chart-line.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -73,6 +76,39 @@ export const PagesRoutes: Routes = [
         { title: 'Calendar' },
       ],
     },
+  },
+  {
+    path: 'charts', 
+    component: ChartsComponent,
+    data: {
+      title: 'Charts',
+      urls: [
+        { title: 'Dashboard', url: '/home' },
+        { title: 'Charts', url: '/charts' },
+        { title: 'Charts' },
+      ],
+    },
+    children: [
+      {
+        path: 'Bar chart',
+        component: ChartBarComponent,
+        data: {
+          title: 'Bar chart',
+        },
+      },
+      {
+        path: 'Line chart',
+        component: ChartLineComponent, 
+        data: {
+          title: 'Line chart',
+        },
+      },
+      {
+        path: '',
+        redirectTo: 'charts',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: 'artist/:id/:slug', 

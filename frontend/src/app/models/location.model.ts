@@ -4,7 +4,6 @@ export interface Location {
     category?: string;
     latitude: number;
     longitude: number;
-    description?: string;
     contact_id?: number; // Foreign key to the contact table
   }
   

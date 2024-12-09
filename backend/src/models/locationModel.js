@@ -19,7 +19,7 @@ const Location = sequelize.define("Location", {
         type: DataTypes.DECIMAL(11, 8),
         allowNull: false,
     },
-    description: {
+    category: {
         type: DataTypes.TEXT,
         allowNull: true,
     },
