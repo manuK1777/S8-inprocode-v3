@@ -65,7 +65,6 @@ export class CalendarComponent {
     });
   }
   
-
   loadEvents(): void {
     this.eventService.getEvents().subscribe({
       next: (events) => {
@@ -82,43 +81,50 @@ export class CalendarComponent {
   private updateCalendarEvents(): void {
     this.calendarOptions.events = this.events.map(event => ({
       title: event.title,
-      start: event.start_time,
-      end: event.end_time,
+      start: this.convertUTCToLocal(event.start_time), 
+      end: event.end_time ? this.convertUTCToLocal(event.end_time) : undefined, 
       color: event.color,
-      extendedProps: { ...event },
+      extendedProps: { ...event }, 
     }));
   }
   
+  /**
+   * Convert a UTC ISO string to local datetime string (YYYY-MM-DDTHH:mm).
+   */
+  private convertUTCToLocal(utcDateTime: string): string {
+    const utcDate = new Date(utcDateTime); // Parse as UTC
+    return utcDate.toISOString().slice(0, 16); // Format for datetime-local input
+  }
   
   eventClickHandler(eventInfo: any): void {
     const dialogRef = this.dialog.open(EventDialogComponent, {
       width: '400px',
       data: {
         mode: 'edit',
-        event: eventInfo.event.extendedProps, // Pass the extended event data
+        event: {
+          ...eventInfo.event.extendedProps, // Use raw data
+          start_time: eventInfo.event.extendedProps.start_time, // Raw UTC value
+          end_time: eventInfo.event.extendedProps.end_time, // Raw UTC value
+        },
       },
     });
   
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.action === 'edit' && result.event) {
-        // Update Event
-        console.log('Dialog result: ', result.event);
-        
         this.eventService.updateEvent(result.event.id, result.event).subscribe({
           next: () => {
             console.log('Event updated successfully');
-            this.loadEvents(); 
+            this.loadEvents(); // Refresh events
           },
           error: (err) => {
             console.error('Error updating event:', err);
           },
         });
       } else if (result?.action === 'delete' && result.event) {
-        // Delete Event
         this.eventService.deleteEvent(result.event.id).subscribe({
           next: () => {
             console.log('Event deleted successfully');
-            this.loadEvents(); 
+            this.loadEvents(); // Refresh events
           },
           error: (err) => {
             console.error('Error deleting event:', err);

@@ -14,41 +14,48 @@
       <button mat-raised-button color="accent" (click)="openAddVenueDialog()">
         <mat-icon>add</mat-icon> Add Venue
       </button>
-  
+
+      <div *ngIf="activeView !== 'table'">
+        <button mat-raised-button color="accent" (click)="changeView('table')">
+          <mat-icon>add</mat-icon> Edit Venue
+        </button>
+      </div>
       <!-- Toggle Edit/Delete Modes -->
-      <button mat-icon-button [color]="editMode ? 'warn' : ''" (click)="toggleEditMode()">
+      <!-- <button mat-icon-button [color]="editMode ? 'warn' : ''" (click)="toggleEditMode()">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button [color]="deleteMode ? 'warn' : ''" (click)="toggleDeleteMode()">
         <mat-icon>delete</mat-icon>
-      </button>
-  
+      </button> -->
+
       <!-- Filters -->
-      <mat-chip-listbox
-        aria-label="Category Filters"
-        [(ngModel)]="selectedCategories"
-        multiple
-        class="chip-container"
-        (change)="toggleCategoryFilter()"
-      >
+      <mat-form-field appearance="fill">
+        <mat-label>Category Filters</mat-label>
+        <mat-select
+          [(value)]="selectedCategories"
+          multiple
+          (selectionChange)="onCategoryChange()"
+        >
+          <!-- Always Present "All Venues" Option -->
+          <!-- <mat-option
+            (click)="selectAllVenues()" 
+          >
+           
+          </mat-option> -->
+    
+          <!-- Dynamic Categories -->
+          <mat-option
+            *ngFor="let category of categories; trackBy: trackByCategory"
+            [value]="category"
+          >
+            {{ category }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-         <!-- Always Present "All Venues" Chip -->
-         <mat-chip-option
-         [value]="'All Venues'"
-         [selected]="isAllVenuesSelected()"
-         (click)="selectAllVenues()"
-       >
-         All Venues
-       </mat-chip-option>
-
-        <!-- Dynamic Categories -->
-      <ng-container *ngFor="let category of categories; trackBy: trackByCategory">
-        <mat-chip-option
-          [value]="category">
-          {{ category }}
-        </mat-chip-option>
-      </ng-container>
-      </mat-chip-listbox>
     </div>
   </mat-toolbar>
+
+
+  
   

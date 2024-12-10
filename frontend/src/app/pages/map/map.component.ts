@@ -38,7 +38,7 @@ export class MapComponent implements OnInit, OnChanges {
     // Initialize the map
     this.map = L.map('map').setView([41.669888, 1.827222], 9); // Example coordinates for Catalonia
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 10,
+      maxZoom: 20,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.map);
 

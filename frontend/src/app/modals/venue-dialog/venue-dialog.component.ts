@@ -38,10 +38,7 @@ export class VenueDialogComponent {
   }
 
   save(): void {
-    console.log('Save method triggered');
-    console.log('Form values:', this.venueForm.value);
-    console.log('Form status:', this.venueForm.status);
-  
+    
     if (this.venueForm.valid) {
       this.dialogRef.close({
         action: this.isEditMode ? 'edit' : 'add',

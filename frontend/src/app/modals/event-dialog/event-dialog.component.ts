@@ -29,27 +29,51 @@ export class EventDialogComponent {
     this.eventForm = this.fb.group({
       title: [this.data.event?.title || '', [Validators.required]],
       category: [this.data.event?.category || ''],
-      start_time: [this.data.event?.start_time || '', [Validators.required]],
-      end_time: [this.data.event?.end_time || '', [Validators.required]],
+      start_time: [
+        this.isEditMode
+          ? this.convertUTCToLocal(this.data.event?.start_time) // Use convertUTCToLocal
+          : this.convertUTCToLocal(this.data.selectedDate),
+        [Validators.required],
+      ],
+      end_time: [
+        this.isEditMode
+          ? this.convertUTCToLocal(this.data.event?.end_time) // Use convertUTCToLocal
+          : '',
+        [Validators.required],
+      ],
       color: [this.data.event?.color || '#3788d8'],
     });
   }
-
-
+  /**
+   * Convert a UTC ISO string to local datetime string (YYYY-MM-DDTHH:mm).
+   */
+  private convertUTCToLocal(utcDateTime: string): string {
+    if (!utcDateTime) return ''; // Return empty string for null or undefined input
+    const utcDate = new Date(utcDateTime); // Parse UTC string into Date object
+    return utcDate.toISOString().slice(0, 16); // Format for datetime-local input
+  }
+  
   saveEvent(): void {
     if (this.eventForm.valid) {
       const updatedEvent = {
-        ...this.data.event, // Include existing event properties like `id`
-        ...this.eventForm.value, // Override with form values
+        ...this.data.event,
+        ...this.eventForm.value,
+        start_time: this.convertToUTC(this.eventForm.value.start_time),
+        end_time: this.convertToUTC(this.eventForm.value.end_time),
       };
       this.dialogRef.close({
         action: this.isEditMode ? 'edit' : 'add',
         event: updatedEvent,
-      });
-    }
+      });   
+    }  
+  }
+
+  private convertToUTC(localDateTime: string): string {
+    const date = new Date(localDateTime); 
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString();
   }
   
-
+  
   deleteEvent(): void {
     this.dialogRef.close({ action: 'delete', event: this.data.event });
   }
