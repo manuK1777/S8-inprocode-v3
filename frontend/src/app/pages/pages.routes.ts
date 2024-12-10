@@ -14,25 +14,25 @@ export const PagesRoutes: Routes = [
   {
     path: '',
     component: homeComponent,
-    data: {
-      title: 'Home',
-      urls: [
-        { title: 'Dashboard', url: '/home' },
-        { title: 'Home' },
-      ],
-    },
+    // data: {
+    //   title: 'Home',
+    //   urls: [
+    //     { title: 'Dashboard', url: '/home' },
+    //     { title: 'Home' },
+    //   ],
+    // },
   },
-  {
-    path: 'artist-list', 
-    component: ArtistListComponent,
-    data: {
-      title: 'Artist List',
-      urls: [
-        { title: 'Dashboard', url: '/home' },
-        { title: 'Artist List' },
-      ],
-    },
-  },
+  // {
+  //   path: 'artist-list', 
+  //   component: ArtistListComponent,
+  //   data: {
+  //     title: 'Artist List',
+  //     urls: [
+  //       { title: 'Dashboard', url: '/home' },
+  //       { title: 'Artist List' },
+  //     ],
+  //   },
+  // },
   {
     path: 'venues',
     component: VenuesComponent, // Parent component
@@ -49,13 +49,22 @@ export const PagesRoutes: Routes = [
         component: MapComponent, // Map view
         data: {
           title: 'Map View',
+          urls: [
+            { title: 'Dashboard', url: '/home' },
+            { title: 'Venues' },
+          ],
         },
+        
       },
       {
         path: 'table',
         component: VenuesTableComponent, // Table view
         data: {
           title: 'Table View',
+          urls: [
+            { title: 'Dashboard', url: '/home' },
+            { title: 'Venues' },
+          ],
         },
       },
       {
@@ -72,7 +81,6 @@ export const PagesRoutes: Routes = [
       title: 'Calendar',
       urls: [
         { title: 'Dashboard', url: '/home' },
-        { title: 'Calendar', url: '/calendar' },
         { title: 'Calendar' },
       ],
     },
@@ -84,7 +92,6 @@ export const PagesRoutes: Routes = [
       title: 'Charts',
       urls: [
         { title: 'Dashboard', url: '/home' },
-        { title: 'Charts', url: '/charts' },
         { title: 'Charts' },
       ],
     },

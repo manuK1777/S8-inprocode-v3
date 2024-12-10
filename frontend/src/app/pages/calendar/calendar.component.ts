@@ -42,7 +42,6 @@ export class CalendarComponent {
     this.loadEvents();
   }
   handleDateClick(arg: any): void {
-    console.log('Date clicked:', arg.dateStr);
     const dialogRef = this.dialog.open(EventDialogComponent, {
       width: '400px',
       data: {

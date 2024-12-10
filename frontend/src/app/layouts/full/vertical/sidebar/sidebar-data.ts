@@ -4,16 +4,16 @@ export const navItems: NavItem[] = [
   // {
   //   navCap: 'Home',
   // },
-  {
-    displayName: 'Home',
-    iconName: 'ic:outline-home',
-    route: '/home',
-  },
-  {
-    displayName: 'Artists',
-    iconName: 'tabler:users-group',
-    route: 'home/artist-list',
-  },
+  // {
+  //   displayName: 'Home',
+  //   iconName: 'ic:outline-home',
+  //   route: '/home',
+  // },
+  // {
+  //   displayName: 'Artists',
+  //   iconName: 'tabler:users-group',
+  //   route: 'home/artist-list',
+  // },
   {
     displayName: 'Venues',
     iconName: 'solar:point-on-map-perspective-bold-duotone',

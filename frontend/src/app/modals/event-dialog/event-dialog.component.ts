@@ -21,7 +21,6 @@ export class EventDialogComponent {
     public dialogRef: MatDialogRef<EventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log('DialogRef:', this.dialogRef);
     this.isEditMode = data.mode === 'edit';
   }
 
@@ -31,26 +30,24 @@ export class EventDialogComponent {
       category: [this.data.event?.category || ''],
       start_time: [
         this.isEditMode
-          ? this.convertUTCToLocal(this.data.event?.start_time) // Use convertUTCToLocal
+          ? this.convertUTCToLocal(this.data.event?.start_time) 
           : this.convertUTCToLocal(this.data.selectedDate),
         [Validators.required],
       ],
       end_time: [
         this.isEditMode
-          ? this.convertUTCToLocal(this.data.event?.end_time) // Use convertUTCToLocal
+          ? this.convertUTCToLocal(this.data.event?.end_time) 
           : '',
         [Validators.required],
       ],
       color: [this.data.event?.color || '#3788d8'],
     });
   }
-  /**
-   * Convert a UTC ISO string to local datetime string (YYYY-MM-DDTHH:mm).
-   */
+
   private convertUTCToLocal(utcDateTime: string): string {
-    if (!utcDateTime) return ''; // Return empty string for null or undefined input
-    const utcDate = new Date(utcDateTime); // Parse UTC string into Date object
-    return utcDate.toISOString().slice(0, 16); // Format for datetime-local input
+    if (!utcDateTime) return ''; 
+    const utcDate = new Date(utcDateTime); 
+    return utcDate.toISOString().slice(0, 16); 
   }
   
   saveEvent(): void {
