@@ -110,6 +110,7 @@ export class VenuesComponent implements OnInit {
       next: (newVenue) => {
         console.log('Venue added:', newVenue);
         this.refreshVenues();
+        this.loadCategories();
       },
       error: (err) => {
         console.error('Error adding venue:', err);
