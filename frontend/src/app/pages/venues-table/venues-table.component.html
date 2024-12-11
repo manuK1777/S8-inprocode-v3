@@ -2,7 +2,6 @@
     <p>No venues available. Try adding some!</p>
   </mat-card>
 
-  <mat-card>
     <table mat-table [dataSource]="venues" class="mat-elevation-z8">
 
       <!-- Name Column -->
@@ -83,4 +82,4 @@
       <tr mat-header-row *matHeaderRowDef="['name', 'category', 'latitude', 'longitude', 'actions']"></tr>
       <tr mat-row *matRowDef="let row; columns: ['name', 'category', 'latitude', 'longitude', 'actions']"></tr>
     </table>
-  </mat-card>
+  

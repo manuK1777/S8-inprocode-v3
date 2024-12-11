@@ -19,8 +19,8 @@ export class MapComponent implements OnInit, OnChanges {
   @Output() editVenue = new EventEmitter<{ id: number; updatedVenue: Location }>();
   @Output() deleteVenue = new EventEmitter<number>();
 
-  private map: any; // Leaflet map instance
-  private markersLayer: any; // Layer group to hold markers
+  private map: any; 
+  private markersLayer: any; 
 
   constructor(private dialog: MatDialog) {}
 
@@ -36,7 +36,7 @@ export class MapComponent implements OnInit, OnChanges {
 
   private initMap(): void {
     // Initialize the map
-    this.map = L.map('map').setView([41.669888, 1.827222], 9); // Example coordinates for Catalonia
+    this.map = L.map('map').setView([41.669888, 1.827222], 9); 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 20,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',

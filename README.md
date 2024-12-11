@@ -1,6 +1,6 @@
-# EpicTours
+# S8-Inprocode
 
-EpicTours is a full-stack web exercise built with Angular 18 (frontend), Node.js (backend), Sequelize, and MySQL. The application allows users to manage events and locations with a calendar interface a map, and displays the data also in charts.
+S8-Inprocode is a full-stack web exercise built with Angular 18 (frontend), Node.js (backend), Sequelize, and MySQL. The application allows users to manage events and locations with a calendar interface a map, and displays the data also in charts.
 
 ## Table of Contents
 1. [Requirements](#requirements)
@@ -26,6 +26,11 @@ Before starting, ensure you have the following installed:
 ---
 
 ## Setup Instructions
+
+## Clone the repository
+   ```bash
+   git clone https://github.com/manuK1777/S8-inprocode-v3.git
+   ```
 
 ### 1. Database Setup
 
@@ -63,42 +68,39 @@ Before starting, ensure you have the following installed:
 3. **Configure Environment Variables**   
    - Create a .env file:
    ```bash
-    cp .env.example .env 
+    touch .env
    ```  
    - Edit the .env file with your MySQL credentials and other configurations:
    ```bash
-   DATABASE=epictours
-   USER_NAME=root
-   PASSWORD=yourpassword
-   DB_PORT=3306
    HOST_NAME=localhost
+   USER_NAME=root
+   PASSWORD=yourpass
+   DATABASE=epictours
+   JWT_SECRET=mfefkuhi345bhf543fdo3k2rjkofn2mbikb19rh
+   CLIENT_URL=localhost://8090
+   NODE_ENV=development
+   BASE_DIR=
+   DB_PORT=3306
    ```
 4. **Seed the Database**  
-   - When you start the backend, the database schema will be created, and initial data will be    
+   - When you start the backend, the database schema will be created, and initial data will be   
      inserted automatically: 
    ```bash
    npm start
    ```
-
 ### 3. Frontend Setup     
 
 1. **Navigate to the Frontend Directory**
    ```bash
+   cd ..
    cd frontend
    ```
 2. **Install Dependencies**   
    ```bash
    npm install
    ```
-3. **Configure the API URL**  
-   - Ensure the API URL in src/environments/environment.ts is set to match your backend:
-   ```bash
-   export const environment = {
-   production: false,
-   apiUrl: 'http://localhost:3000'
-   };
-   ```
-4. **Run the Frontend**   
+
+3. **Run the Frontend**   
    ```bash
    ng serve
    ```

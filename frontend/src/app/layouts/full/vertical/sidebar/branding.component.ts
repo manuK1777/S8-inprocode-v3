@@ -14,6 +14,7 @@ import { CoreService } from 'src/app/services/core.service';
           src="./assets/images/logos/dark-logo.svg"
           class="align-middle"
           alt="logo"
+          style="width: 80%, height: 80%"
         />
       </a>
       } @if(options.theme === 'dark') {

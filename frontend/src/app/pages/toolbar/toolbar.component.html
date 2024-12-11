@@ -17,7 +17,7 @@
 
       <div *ngIf="activeView !== 'table'">
         <button mat-raised-button color="accent" (click)="changeView('table')">
-          <mat-icon>add</mat-icon> Edit Venue
+          <mat-icon>add</mat-icon> Edit Venues
         </button>
       </div>
       <!-- Toggle Edit/Delete Modes -->
@@ -29,7 +29,7 @@
       </button> -->
 
       <!-- Filters -->
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="filters-box">
         <mat-label>Category Filters</mat-label>
         <mat-select
           [(value)]="selectedCategories"
