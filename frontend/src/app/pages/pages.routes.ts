@@ -22,17 +22,17 @@ export const PagesRoutes: Routes = [
     //   ],
     // },
   },
-  // {
-  //   path: 'artist-list', 
-  //   component: ArtistListComponent,
-  //   data: {
-  //     title: 'Artist List',
-  //     urls: [
-  //       { title: 'Dashboard', url: '/home' },
-  //       { title: 'Artist List' },
-  //     ],
-  //   },
-  // },
+  {
+    path: 'artist-list', 
+    component: ArtistListComponent,
+    data: {
+      title: 'Artist List',
+      urls: [
+        { title: 'Dashboard', url: '/home' },
+        { title: 'Artist List' },
+      ],
+    },
+  },
   {
     path: 'venues',
     component: VenuesComponent, // Parent component

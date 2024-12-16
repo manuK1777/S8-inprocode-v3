@@ -9,11 +9,11 @@ export const navItems: NavItem[] = [
   //   iconName: 'ic:outline-home',
   //   route: '/home',
   // },
-  // {
-  //   displayName: 'Artists',
-  //   iconName: 'tabler:users-group',
-  //   route: 'home/artist-list',
-  // },
+  {
+    displayName: 'Artists',
+    iconName: 'tabler:users-group',
+    route: 'home/artist-list',
+  },
   {
     displayName: 'Venues',
     iconName: 'solar:point-on-map-perspective-bold-duotone',

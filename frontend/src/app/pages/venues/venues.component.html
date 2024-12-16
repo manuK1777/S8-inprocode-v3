@@ -16,7 +16,7 @@
 </ng-container>
 
 <ng-template #tableView>
-  <app-venues-table
+  <app-venues-table class="venues-table-content"
     [venues]="venuesSignal()"
     (editVenue)="editVenue($event.id, $event.updatedVenue)"
     (deleteVenue)="deleteVenue($event)"

@@ -28,6 +28,7 @@ export class MapComponent implements OnInit, OnChanges {
     this.initMap();
   }
 
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['venues'] && this.map) {
       this.updateMapMarkers(this.venues);

@@ -20,7 +20,6 @@ Before starting, ensure you have the following installed:
 
 - **Node.js** (>=14)
 - **MySQL** (>=8.0)
-- **Angular CLI** (>=15)
 - **Git**
 
 ---
@@ -100,14 +99,16 @@ Before starting, ensure you have the following installed:
    npm install
    ```
 
-3. **Run the Frontend**   
+<!-- 3. **Run the Frontend**
+
    ```bash
-   ng serve
-   ```
+   npx ng serve
+   ``` -->
 
 ## How to Run   
 
 1. **Start the Backend**
+   - Navigate to the backend folder
    - Run the backend server:
    ```bash
    npm start
@@ -115,9 +116,10 @@ Before starting, ensure you have the following installed:
    - The backend will be available at http://localhost:3000.
 
 2. **Start the Frontend**
+   - Navigate to the frontend folder
    - Run the Angular development server:
    ```bash
-   ng serve
+   npx ng serve
    ```
    - The frontend will be available at http://localhost:4200.
 
