@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+// @use '@angular/material' as mat;
 
 mat-grid-list {
     margin: 20px;
@@ -8,22 +8,16 @@ mat-grid-tile {
     border: 1px solid #ccc;
 }
 
-.tile-header {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;  
-}
-
 .mat-h1{
     font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 3px;    
   }
 
   .fab-menu {
     display: flex;
     flex-direction: column; 
-    align-items: flex-start; 
+  //  align-items: flex-start; 
     gap: 19px; 
 }
 
@@ -31,10 +25,11 @@ mat-mini-fab {
     padding-right: 2rem;
 }
 
-.tile-image {
+.cust-image {
         width: auto;
-        height: 180px;
-        object-fit: cover;
+        height: 140px;
+        object-fit: contain;
+        max-width: 100%; 
         display: block;
         margin: auto;
 }
@@ -43,4 +38,18 @@ mat-mini-fab {
     margin-left: 16px;
 }
 
-  
+.cust-icon {
+    margin-right: 6px;
+
+}
+
+.mat-mdc-card > .mat-mdc-card-content {
+    padding: 0px;
+}
+
+.cust-icon {
+   
+    margin: auto;
+    font-size: 1rem;
+}
+

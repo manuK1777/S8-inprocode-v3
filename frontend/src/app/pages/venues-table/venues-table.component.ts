@@ -45,10 +45,9 @@ export class VenuesTableComponent implements OnChanges {
     }
   }
   
-
   startEditing(venue: Location): void {
     this.editingVenueId = venue.id ?? null;
-    this.editedVenue = { ...venue }; // Copy the venue data to avoid direct mutation
+    this.editedVenue = { ...venue }; 
   }
 
   saveEdit(): void {

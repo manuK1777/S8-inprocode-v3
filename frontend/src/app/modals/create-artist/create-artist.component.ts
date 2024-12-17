@@ -131,7 +131,12 @@ export class CreateArtistComponent implements OnInit {
       formData.append('email', this.artistForm.get('email')?.value);
       formData.append('contact', this.artistForm.get('contact')?.value);
       formData.append('phone', this.artistForm.get('phone')?.value);
-      formData.append('webPage', this.artistForm.get('webPage')?.value || '');
+      
+      const webPageValue = this.artistForm.get('webPage')?.value;
+        if (webPageValue) {
+          formData.append('webPage', webPageValue);
+        }
+
     
       if (this.selectedFile) {
         formData.append('file', this.selectedFile);

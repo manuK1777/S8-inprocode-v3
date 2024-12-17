@@ -15,18 +15,11 @@
         <mat-icon>add</mat-icon> Add Venue
       </button>
 
-      <div *ngIf="activeView !== 'table'">
+      @if (activeView !== 'table') {
         <button mat-raised-button color="accent" (click)="changeView('table')">
           <mat-icon>add</mat-icon> Edit Venues
         </button>
-      </div>
-      <!-- Toggle Edit/Delete Modes -->
-      <!-- <button mat-icon-button [color]="editMode ? 'warn' : ''" (click)="toggleEditMode()">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button [color]="deleteMode ? 'warn' : ''" (click)="toggleDeleteMode()">
-        <mat-icon>delete</mat-icon>
-      </button> -->
+      }
 
       <!-- Filters -->
       <mat-form-field appearance="fill" class="filters-box">
@@ -44,12 +37,12 @@
           </mat-option> -->
     
           <!-- Dynamic Categories -->
-          <mat-option
-            *ngFor="let category of categories; trackBy: trackByCategory"
-            [value]="category"
-          >
-            {{ category }}
-          </mat-option>
+          @for (category of categories; track category; let i = $index) {
+            <mat-option [value]="category">
+              {{ category }}
+            </mat-option>
+          }
+
         </mat-select>
       </mat-form-field>
 

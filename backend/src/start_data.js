@@ -5,6 +5,45 @@ import Events from './models/eventModel.js';
 
 const insertInitialUserData = async () => {
 
+  const artistData = [
+    {
+      user_id: 1,
+      name: 'Kiss',
+      email: 'kiss@example.com',
+      contact: 'Gene Simmons',
+      phone: '+1234567890',
+      webPage: 'https://kissonline.com',
+      file: 'file-1733425970024.jpg',
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      user_id: 2,
+      name: 'Motley Crüe',
+      email: 'motleycrue@example.com',
+      contact: 'Nikki Sixx',
+      phone: '+0987654321',
+      webPage: 'https://motleycrue.com',
+      file: 'file-1733419702838.jpeg',
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+    {
+      user_id: 3,
+      name: 'Twisted Sister',
+      email: 'twistedsister@example.com',
+      contact: 'Petra',
+      phone: '+1122334455',
+      webPage: null, 
+      file: 'file-1734468978943.jpeg',
+      created_at: new Date(),
+      updated_at: new Date(),
+    },
+
+  ];
+
+  await Location.bulkCreate(artistData, { ignoreDuplicates: true });
+
   const locationData = [
     {
         name: 'Nova Jazz Cava',

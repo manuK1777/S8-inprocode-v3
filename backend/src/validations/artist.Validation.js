@@ -38,11 +38,12 @@ export const artistValidator = [
 
   // Validate webPage (optional)
   body("webPage")
-    .optional()
-    .isString()
-    .withMessage("Web Page must be a string")
-    .matches(/^(https?:\/\/)?[\w-]+(\.[\w-]+)+[/#?]?.*$/)
-    .withMessage("Web Page must be a valid URL"),
+  .optional({ values: "falsy" }) // Allows undefined, null, or empty string
+  .isString()
+  .withMessage("Web Page must be a string")
+  .matches(/^(https?:\/\/)?[\w-]+(\.[\w-]+)+[/#?]?.*$/)
+  .withMessage("Web Page must be a valid URL")
+  .bail(),
 
   // Validate file (optional)
   body("file")

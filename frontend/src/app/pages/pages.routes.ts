@@ -124,7 +124,6 @@ export const PagesRoutes: Routes = [
       title: 'Artist Details',
       urls: [
         { title: 'Dashboard', url: '/home' },
-        { title: 'Artist List', url: '/artist-list' },
         { title: 'Artist Details' },
       ],
     },

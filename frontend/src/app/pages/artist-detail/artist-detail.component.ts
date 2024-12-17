@@ -12,6 +12,7 @@ import { ConfirmationDialogComponent } from '../../modals/confirmation-dialog/co
 import { artist } from '../../models/artist.model';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { MaterialModule } from '../../material.module';
+import { OpenModalArtistInfoService } from 'src/app/services/open-modal-artist-info.service';
 
 export interface Tile {
   color: string;
@@ -56,6 +57,7 @@ export class ArtistDetailComponent implements OnInit {
     private artistsService: ArtistsService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    private openModalArtistInfoService: OpenModalArtistInfoService,
   ) {}
   
 
@@ -82,20 +84,12 @@ export class ArtistDetailComponent implements OnInit {
 
 
         this.tiles = [
-          { text: 'Image', imageUrl, cols: 2, rows: 1, color: '', type: 'image' },
-          { text: this.name, cols: 2, rows: 1, color: '', type: 'header' },
-          { text: 'Eventos', cols: 2, rows: 3, color: '', type: 'text' },
-          { text: 'Buttons', cols: 1, rows: 2, color: '', type: 'button' },
-          { text: 'Info', cols: 3, rows: 2, color: '', type: 'info' },
+          { text: this.name, imageUrl, cols: 2, rows: 1, color: '', type: 'image' },
+          { text: 'Info', cols: 2, rows: 1, color: '', type: 'info' },
+          { text: 'Eventos (Table)', cols: 2, rows: 3, color: '', type: 'text' },
+          { text: 'Buttons', cols: 1, rows: 2, color: '', type: 'button'},
+          { text: 'EN CONSTRUCCIÓN: info, editar y borrar artista funcionan!', cols: 3, rows: 2, color: '', type: 'text' },
         ];
-
-
-        console.log('id:' + this.id + ' user_id:' + this.user_id + ' name:' + this.name + ' email:' + this.email + ' webpage:' + this.webpage + ' contact:' + this.contact + ' phone:' + this.phone);
-        
-
-        console.log('Tiles data:', JSON.stringify(this.tiles, null, 2));
-        console.log(imageUrl);
-        console.log('Artist details:', JSON.stringify(artist, null, 2));
       },
       error: (error) => {
         console.error('Failed to load artist details:', error);
@@ -251,5 +245,16 @@ navigateToArtistList(): void {
   this.router.navigate(['/home/artist-list']); 
 }
 
+openArtistInfoModal() {
+
+  const artistData = {
+    name: this.name,
+    email: this.email,
+    phone: this.phone,
+    webpage: this.webpage,
+    contact: this.contact,
+  };
+  const dialogRef = this.openModalArtistInfoService.openArtistInfoComponent(artistData); 
+}
 }
 

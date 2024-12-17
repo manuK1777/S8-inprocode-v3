@@ -5,7 +5,7 @@ export interface artist {
     email: string;
     contact: string;
     phone: string;
-    webPage?: string;
+    webPage?: string | null;
     file?: string | null;
   }
   

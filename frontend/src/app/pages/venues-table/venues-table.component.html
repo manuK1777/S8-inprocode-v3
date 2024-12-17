@@ -1,8 +1,15 @@
-<mat-card *ngIf="venues.length === 0">
+<!-- <mat-card *ngIf="venues.length === 0">
   <p>No venues available. Try adding some!</p>
-</mat-card>
+</mat-card> -->
 
-<div class="mat-elevation-z8">
+@if (venues.length === 0) {
+  <mat-card>
+    <p>No venues available. Try adding some!</p>
+  </mat-card>
+}
+
+
+<div class="mat-elevation-z8 table-container">
 
   <table mat-table [dataSource]="dataSource">
 
@@ -13,6 +20,7 @@
         <ng-container *ngIf="venue?.id !== editingVenueId; else editName">
           {{ venue?.name ?? 'Unknown' }}
         </ng-container>
+        
         <ng-template #editName>
           <input matInput [(ngModel)]="editedVenue.name" />
         </ng-template>

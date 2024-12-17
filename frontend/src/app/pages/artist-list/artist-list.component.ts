@@ -74,8 +74,5 @@ export class ArtistListComponent implements AfterViewInit {
     }
     return url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`;
   }
-  
-  
-
 }
 
