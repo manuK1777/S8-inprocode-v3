@@ -56,7 +56,6 @@ export class ToolbarComponent {
     this.filterChange.emit(this.selectedCategories); 
   }
   
-
   changeView(view: 'map' | 'table'): void {
     this.activeView = view;
     this.switchView.emit(view); 
@@ -70,12 +69,10 @@ export class ToolbarComponent {
     return category;
   }
 
-    // Check if "All Venues" is selected
     isAllVenuesSelected(): boolean {
       return this.selectedCategories.length === 0;
     }
   
-    // Select "All Venues" and clear filters
     selectAllVenues(): void {
       this.selectedCategories = []; 
       this.emitFilterChange();

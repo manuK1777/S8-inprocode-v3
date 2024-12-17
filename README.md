@@ -87,6 +87,8 @@ Before starting, ensure you have the following installed:
    ```bash
    npm start
    ```
+   - The backend will be available at http://localhost:3000.
+
 ### 3. Frontend Setup     
 
 1. **Navigate to the Frontend Directory**
@@ -99,33 +101,18 @@ Before starting, ensure you have the following installed:
    npm install
    ```
 
-<!-- 3. **Run the Frontend**
-
-   ```bash
-   npx ng serve
-   ``` -->
-
-## How to Run   
-
-1. **Start the Backend**
-   - Navigate to the backend folder
-   - Run the backend server:
-   ```bash
-   npm start
-   ```
-   - The backend will be available at http://localhost:3000.
-
-2. **Start the Frontend**
-   - Navigate to the frontend folder
+3. **Start the Frontend**
    - Run the Angular development server:
    ```bash
    npx ng serve
    ```
    - The frontend will be available at http://localhost:4200.
 
-3. **Test the Application**  
+
+4. **Test the Application**  
    - Open http://localhost:4200 in your browser.
-   - Verify the events and locations appear correctly in the application. 
+   
+
 
 ## Optional: Manual Database Setup
 

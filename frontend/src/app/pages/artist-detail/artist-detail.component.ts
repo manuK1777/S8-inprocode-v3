@@ -111,13 +111,11 @@ export class ArtistDetailComponent implements OnInit {
   }
 
   private processFile(file: File): void {
-    // Validate file size (10 KB - 5 MB)
     if (file.size < 10 * 1024 || file.size > 5 * 1024 * 1024) {
       alert('File size must be between 10 KB and 5 MB.');
       return;
     }
 
-    // Validate file type
     if (!['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(file.type)) {
       alert('Invalid file type. Please upload a JPG, PNG or WEBP image.');
       return;
@@ -163,32 +161,13 @@ export class ArtistDetailComponent implements OnInit {
       },
     });
   }
- 
-  // openEditArtistModal(): void {
-  //   const artist = this.getArtistForEdit();
-  //   console.log('Opening edit modal with artist:', artist);
-
-  //   const dialogRef = this.dialog.open(CreateArtistComponent, {
-  //     width: '500px',
-  //     data: { artist }, 
-  
-  //   });
-  
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result?.action === 'edit' || result?.action === 'create') {
-  //       console.log('Artist updated:', result.artist);
-  //       this.loadArtistDetails(this.id); 
-  //     }
-  //     console.log('Modal result:', result);
-  //   });
-  // }
-  
+   
   openEditArtistModal(): void {
     const artist = this.getArtistForEdit();
     console.log('Opening edit modal with artist:', artist);
   
     const dialogRef = this.dialog.open(CreateArtistComponent, {
-      width: '500px',
+      width: '600px',
       data: { artist },
     });
   
@@ -198,7 +177,7 @@ export class ArtistDetailComponent implements OnInit {
           case 'edit':
           case 'create':
             console.log('Artist updated:', result.artist);
-            this.loadArtistDetails(this.id); // Reload artist details
+            this.loadArtistDetails(this.id); 
             break;
           case 'deleteImage':
             console.log('Image deleted, updating artist details...');
@@ -208,7 +187,7 @@ export class ArtistDetailComponent implements OnInit {
                 ? { ...tile, imageUrl: 'http://localhost:3000/uploads/tortuga.jpg' }
                 : tile
             );
-            this.loadArtistDetails(this.id); // Optionally reload details to sync with server
+            this.loadArtistDetails(this.id); 
             break;
           default:
             console.log('No specific action handled:', result.action);
@@ -266,6 +245,10 @@ deleteArtist(): void {
       });
     }
   });
+}
+
+navigateToArtistList(): void {
+  this.router.navigate(['/home/artist-list']); 
 }
 
 }

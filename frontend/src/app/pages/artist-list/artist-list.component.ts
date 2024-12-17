@@ -70,7 +70,7 @@ export class ArtistListComponent implements AfterViewInit {
 
   sanitizeWebPage(url: string | null): string {
     if (!url || url.trim() === '') {
-      return '#'; // Fallback for invalid or empty URLs
+      return '#';
     }
     return url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`;
   }

@@ -9,6 +9,8 @@ import { ArtistsService } from '../../services/artists.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { artist } from '../../models/artist.model';
 import { Router } from '@angular/router';
+import { MaterialModule } from 'src/app/material.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-artist',
@@ -19,6 +21,8 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     MatButtonModule, 
     MatDialogModule,
+    MaterialModule,
+    CommonModule
   ],
   templateUrl: './create-artist.component.html',
   styleUrl: './create-artist.component.scss'
@@ -67,13 +71,11 @@ export class CreateArtistComponent implements OnInit {
   }
 
   private processFile(file: File): void {
-    // Validate file size (10 KB - 5 MB)
     if (file.size < 10 * 1024 || file.size > 5 * 1024 * 1024) {
       alert('File size must be between 10 KB and 5 MB.');
       return;
     }
 
-    // Validate file type
     if (!['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(file.type)) {
       alert('Invalid file type. Please upload a JPG, PNG or WEBP image.');
       return;
@@ -90,24 +92,34 @@ export class CreateArtistComponent implements OnInit {
   }
 
   onDeleteImage(): void {
+    // Case 1: If a local image is being previewed (new upload)
+    if (this.previewUrl && this.selectedFile) {
+      this.previewUrl = null; // Clear the local preview
+      this.selectedFile = null; // Reset the selected file
+      console.log('Local image preview cleared');
+      return;
+    }
+  
+    // Case 2: If editing an existing artist with an image
     if (this.data?.artist?.id) {
       this.artistsService.deleteArtistImage(this.data.artist.id).subscribe({
         next: () => {
-          // this.router.navigate([`/home/artist/${this.data?.artist?.id}/${this.data?.artist?.name.toLowerCase().replace(/ /g, '-')}`]);
-          console.log('file deleted successfully');
-        //  this.loadArtistDetails(this.data.artist.id);
-         // Close the dialog and pass updated data to the parent component
-         this.dialogRef.close({
-          action: 'deleteImage',
-          artist: { ...this.data?.artist, file: null },
-        });
-      },
+          console.log('File deleted successfully from the server');
+  
+          // Update previewUrl and reset file reference
+          this.previewUrl = null;
+          this.dialogRef.close({
+            action: 'deleteImage',
+            artist: { ...this.data?.artist, file: null },
+          });
+        },
         error: (error) => {
-          console.error('Failed to delete file:', error);
+          console.error('Failed to delete file from the server:', error);
         },
       });
     }
   }
+  
   
   onSave(): void {
     if (this.artistForm.valid && !this.isSubmitting) {
@@ -127,7 +139,7 @@ export class CreateArtistComponent implements OnInit {
 
       console.log('FormData before submission:', Array.from((formData as any).entries()));
 
-       // Check if editing or creating
+      // Check if editing or creating
     if (this.data?.artist) {
       console.log('Editing Artist ID:', this.data.artist.id);
 
