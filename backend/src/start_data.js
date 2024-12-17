@@ -1,6 +1,7 @@
 
 import Location from './models/locationModel.js';
 import Events from './models/eventModel.js';
+import Artist from './models/artistModel.js';
 
 
 const insertInitialUserData = async () => {
@@ -42,7 +43,7 @@ const insertInitialUserData = async () => {
 
   ];
 
-  await Location.bulkCreate(artistData, { ignoreDuplicates: true });
+  await Artist.bulkCreate(artistData, { ignoreDuplicates: true });
 
   const locationData = [
     {

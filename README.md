@@ -112,7 +112,7 @@ Before starting, ensure you have the following installed:
 4. **Test the Application**  
    - Open http://localhost:4200 in your browser.
    
-
+---
 
 ## Optional: Manual Database Setup
 
