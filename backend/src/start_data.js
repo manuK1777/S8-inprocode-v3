@@ -8,7 +8,7 @@ const insertInitialUserData = async () => {
 
   const artistData = [
     {
-      user_id: 1,
+      id: 1,
       name: 'Kiss',
       email: 'kiss@example.com',
       contact: 'Gene Simmons',
@@ -19,7 +19,7 @@ const insertInitialUserData = async () => {
       updated_at: new Date(),
     },
     {
-      user_id: 2,
+      id: 2,
       name: 'Motley Crüe',
       email: 'motleycrue@example.com',
       contact: 'Nikki Sixx',
@@ -30,7 +30,7 @@ const insertInitialUserData = async () => {
       updated_at: new Date(),
     },
     {
-      user_id: 3,
+      id: 3,
       name: 'Twisted Sister',
       email: 'twistedsister@example.com',
       contact: 'Petra',
