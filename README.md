@@ -66,11 +66,19 @@ Before starting, ensure you have the following installed:
    ```  
 3. **Configure Environment Variables**   
    - Create a .env file:
+
+   - Linux/macOS: Use touch to create a file.
    ```bash
     touch .env
    ```  
+   - Windows: Use echo to create a file.
+   ```bash
+   echo. > .env
+   ```
+
    - Edit the .env file with your MySQL credentials and other configurations:
    ```bash
+
    HOST_NAME=localhost
    USER_NAME=root
    PASSWORD=yourpass
@@ -81,6 +89,7 @@ Before starting, ensure you have the following installed:
    BASE_DIR=
    DB_PORT=3306
    ```
+
 4. **Seed the Database**  
    - When you start the backend, the database schema will be created, and initial data will be   
      inserted automatically: 
@@ -88,6 +97,7 @@ Before starting, ensure you have the following installed:
    npm start
    ```
    - The backend will be available at http://localhost:3000.
+
 
 ### 3. Frontend Setup     
 
@@ -112,7 +122,9 @@ Before starting, ensure you have the following installed:
 4. **Test the Application**  
    - Open http://localhost:4200 in your browser.
    
+
 ---
+
 
 ## Optional: Manual Database Setup
 
